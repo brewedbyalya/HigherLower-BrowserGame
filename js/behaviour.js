@@ -18,7 +18,6 @@ const statusMessage = document.createElement('p');
 
 /*-------------- Functions -------------*/
 function initGame() {
-    // Initialize status message element
     if (!document.getElementById('game-status')) {
         statusMessage.id = 'game-status';
         statusMessage.className = 'mt-3 text-center fw-bold';
@@ -31,14 +30,12 @@ function initGame() {
     updateStatus("Game started! Is the next card higher or lower?");
     drawNewCard();
     
-    // Set up back card
     if (backCard) {
         backCard.src = './assets/flippedCard.png';
         backCard.alt = 'Flipped Card';
         backCard.style.display = 'none';
     }
     
-    // Enable buttons
     if (higherBtn) higherBtn.disabled = false;
     if (lowerBtn) lowerBtn.disabled = false;
 }
@@ -107,7 +104,6 @@ async function compareCards(guess) {
         correct = true;
     }
     
-    // Handle result
     if (correct) {
         coins++;
         updateCoinDisplay();
