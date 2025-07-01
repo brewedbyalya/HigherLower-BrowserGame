@@ -10,7 +10,7 @@ If they guess right, they get a coin. If they guess wrong, it's game over. Get 1
 
 ## 🚀 Getting Started
 
-👉 **Play it** [here!](xxx)
+👉 **Play it** [here!](https://brewedbyalya.github.io/HigherLower-BrowserGame/mainpage.html)
 
 👉 **Planning Materials:**
  [User Stories + Wireframe](https://trello.com/b/RyrGqcxp/higher-lower-game)
