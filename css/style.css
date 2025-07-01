@@ -106,19 +106,20 @@ h1 {
     color: #a20dbd;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-        margin: 10px;
+@media (max-width: 576px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
     }
     
-    h1 {
-        font-size: 2rem;
+    .card1, .card2 {
+        margin: 10px 0;
     }
     
-    .startBtn, #resetBtn {
-        width: 120px;
-        font-size: 18px;
+    #controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
@@ -147,10 +148,44 @@ background: linear-gradient(#e447d1, #433343);
   margin: auto;
 }
 
- .card1 {
-  margin-right: auto;
+.card1, .card2 {
+    width: 150px;
+    height: 225px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin: 0 20px;
 }
 
-.card2 {
-  margin-left: auto; 
-} 
+.card1:hover, .card2:hover {
+    transform: scale(1.05);
+}
+
+.card1 img, .card2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(rgba(56, 2, 68, 1), #a20dbd);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(#e447d1, #433343);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(#495057, #6c757d);
+    transform: translateY(-2px);
+}
