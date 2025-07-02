@@ -14,7 +14,7 @@ const higherBtn = document.getElementById('higher');
 const lowerBtn = document.getElementById('lower');
 const resetBtn = document.getElementById('resetBtn');
 const coinCount = document.getElementById('coin-count');
-const statusMessage = document.createElement('p');
+const statusMessage = document.getElementById('game-status-container');
 
 /*-------------- Functions -------------*/
 function initGame() {
@@ -150,3 +150,5 @@ if (lowerBtn) {
 if (resetBtn) {
     resetBtn.addEventListener('click', initGame);
 }
+
+initGame();
