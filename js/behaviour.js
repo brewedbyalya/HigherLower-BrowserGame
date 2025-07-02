@@ -53,7 +53,7 @@ function drawNewCard() {
     
     if (frontCard) {
         frontCard.src = `./assets/${currentCard}.png`;
-        frontCard.alt = `Card ${currentCard}`;
+        frontCard.alt = `${currentCard} Card`;
     }
     
     const nextRandomIndex = Math.floor(Math.random() * cardValues.length);
@@ -74,7 +74,7 @@ async function showFlippedCard() {
 async function revealCard() {
     if (backCard) {
         backCard.src = `./assets/${nextCard}.png`;
-        backCard.alt = `Card ${nextCard}`;
+        backCard.alt = `${nextCard} Card`;
         backCard.classList.add('flip-animation');
         
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -102,13 +102,11 @@ async function compareCards(guess) {
     await new Promise(resolve => setTimeout(resolve, 300));
     await revealCard();
     
-    // Check if cards are equal first
     if (currentIndex === nextIndex) {
         updateStatus(`Same card! ${nextCard} equals ${currentCard}. Try again!`, true);
         setTimeout(async () => {
             if (backCard) backCard.style.display = 'none';
             
-            // Redraw the next card (keeping current card the same)
             const nextRandomIndex = Math.floor(Math.random() * cardValues.length);
             nextCard = cardValues[nextRandomIndex];
             
@@ -178,6 +176,8 @@ if (resetBtn) {
 }
 
 initGame();
+
+/* ------------------------------------------------------------------------------------ */
 
 /*----------- Confetti Animation ----------*/
 function createConfetti() {
