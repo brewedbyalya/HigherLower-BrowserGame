@@ -1,10 +1,10 @@
 /* Psuedocode:- Coins start at 0, and when the game restarts, its 0 again.
-- card1 and card2 needs to change after every round.
-- Coin score needs to go up every round.
-- The program needs to be responsive to the user's guesses (show correct if guessed right).
-- A message needs to appear after every correct or wrong guess.
-- The program needs to stop after 10 coins to declare the user a winner.
-- Flip animation needs to play after rounds, updating the cards.*/
+//card1 and card2 needs to change after every round.
+//Coin score needs to go up every round.
+//The program needs to be responsive to the user's guesses (show correct if guessed right).
+//A message needs to appear after every correct or wrong guess.
+//The program needs to stop after 10 coins to declare the user a winner.
+//Flip animation needs to play after rounds, updating the cards.*/
 
 /*-------------- Constants -------------*/
 const cardValues = ["Ace","2","3","4","5","6","7","8","9","10","Jester","Queen","King"];
