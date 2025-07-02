@@ -296,3 +296,9 @@ background: linear-gradient(#e447d1, #433343);
         opacity: 0;
     }
 }
+
+footer {
+    font-family: sans-serif;
+    font-style: italic;
+    margin: auto;
+}
