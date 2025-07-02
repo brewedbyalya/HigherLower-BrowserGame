@@ -237,3 +237,119 @@ background: linear-gradient(#e447d1, #433343);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
 }
+
+.winner-container {
+    max-width: 600px;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(106, 13, 173, 0.2);
+    animation: fadeIn 0.8s ease;
+}
+
+.winner-title {
+    color: #6a0dad;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: bounce 1s ease infinite alternate;
+}
+
+.winner-subtitle {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.winner-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.winner-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.winner-btn-primary {
+    background: linear-gradient(rgba(106, 13, 173, 1), #8a2be2);
+    color: white;
+}
+
+.winner-btn-primary:hover {
+    background: linear-gradient(#8a2be2, rgba(106, 13, 173, 1));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(138, 43, 226, 0.3);
+}
+
+.winner-btn-secondary {
+    background: linear-gradient(#495057, #6c757d);
+    color: white;
+}
+
+.winner-btn-secondary:hover {
+    background: linear-gradient(#6c757d, #495057);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(108, 117, 125, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    opacity: 0;
+    animation: confetti 5s ease-in-out infinite;
+}
+
+@keyframes confetti {
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(100vh) rotate(720deg); 
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .winner-container {
+        padding: 30px 20px;
+    }
+    
+    .winner-title {
+        font-size: 2.2rem;
+    }
+    
+    .winner-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .winner-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .winner-btn {
+        width: 100%;
+    }
+}

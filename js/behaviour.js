@@ -91,10 +91,24 @@ async function compareCards(guess) {
     const nextIndex = cardValues.indexOf(nextCard);
     
     await showFlippedCard();
-    
     await new Promise(resolve => setTimeout(resolve, 300));
-    
     await revealCard();
+    
+    // Check if cards are equal first
+    if (currentIndex === nextIndex) {
+        updateStatus(`Same card! ${nextCard} equals ${currentCard}. Try again!`, true);
+        setTimeout(async () => {
+            if (backCard) backCard.style.display = 'none';
+            
+            // Redraw the next card (keeping current card the same)
+            const nextRandomIndex = Math.floor(Math.random() * cardValues.length);
+            nextCard = cardValues[nextRandomIndex];
+            
+            if (higherBtn) higherBtn.disabled = false;
+            if (lowerBtn) lowerBtn.disabled = false;
+        }, 1000);
+        return;
+    }
     
     let correct = false;
     if (guess === 'higher' && nextIndex > currentIndex) {
@@ -111,6 +125,10 @@ async function compareCards(guess) {
         if (coins >= 10) {
             updateStatus("Congratulations! You won with 10 coins!", true);
             gameActive = false;
+            createConfetti();
+            setTimeout(() => {
+                window.location.href = "winner.html";
+            }, 1500);
         } else {
             setTimeout(async () => {
                 currentCard = nextCard;
@@ -152,3 +170,34 @@ if (resetBtn) {
 }
 
 initGame();
+
+/*----------- Confetti Animation ----------*/
+function createConfetti() {
+    const colors = ['#6a0dad', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+    const container = document.createElement('div');
+    container.id = 'confetti-container';
+    container.style.position = 'fixed';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.pointerEvents = 'none';
+    container.style.zIndex = '1000';
+    document.body.appendChild(container);
+    
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.position = 'absolute';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animation = `confetti ${(Math.random() * 3 + 2)}s ease-in-out ${(Math.random() * 2)}s infinite`;
+        confetti.style.left = Math.random() * 100 + 'vw';
+        container.appendChild(confetti);
+    }
+    
+    setTimeout(() => {
+        container.remove();
+    }, 5000);
+}
