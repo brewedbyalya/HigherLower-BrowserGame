@@ -28,9 +28,11 @@ If they guess right, they get a coin. If they guess wrong, it's game over. Get 1
 - Bootstrap
 - JavaScript
 
-## 📚 Attributions
-
+## 📚 Credits / References Used
 - [Playing cards made by BlueIZ.](https://witchs-heart.fandom.com/wiki/Minigame/Gallery#Noel's_Minigame_(High-Low))
+- [Button codes](https://www.cssbuttongenerator.com/)
+- [Confetti tutorial](https://medium.com/@aleksej.gudkov/how-to-create-a-confetti-css-animation-a-step-by-step-guide-4ef79bf5ce2e)
+- [Async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 
 ## 🚧 Next Steps
 

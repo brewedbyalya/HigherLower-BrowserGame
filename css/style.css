@@ -56,7 +56,7 @@ h1 {
     justify-content: center;
 }
 
-.startBtn:hover {
+.startBtn:hover, #startPlaying:hover {
     background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
     transform: translateY(-2px);
     box-shadow: inset 0px 1px 0px 0px #e184f3, 
@@ -173,28 +173,6 @@ background: linear-gradient(#e447d1, #433343);
     border-radius: 10px;
 }
 
-.btn-primary {
-    background: linear-gradient(rgba(56, 2, 68, 1), #a20dbd);
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background: linear-gradient(#e447d1, #433343);
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background: linear-gradient(#495057, #6c757d);
-    transform: translateY(-2px);
-}
-
 .flip-animation {
     animation: flip 0.5s ease;
 }
@@ -261,54 +239,42 @@ background: linear-gradient(#e447d1, #433343);
     margin-bottom: 30px;
 }
 
-.winner-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.winner-btn {
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    border-radius: 8px;
+.playAgainBtn {
+    background: linear-gradient(#e447d1, #433343);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.winner-btn-primary {
-    background: linear-gradient(rgba(106, 13, 173, 1), #8a2be2);
-    color: white;
-}
-
-.winner-btn-primary:hover {
-    background: linear-gradient(#8a2be2, rgba(106, 13, 173, 1));
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(138, 43, 226, 0.3);
-}
-
-.winner-btn-secondary {
+.playAgainBtn:hover {
     background: linear-gradient(#495057, #6c757d);
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.returnHomeBtn {
+   background: linear-gradient(#e447d1, #433343);
     color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.winner-btn-secondary:hover {
-    background: linear-gradient(#6c757d, #495057);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(108, 117, 125, 0.3);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-10px); }
+.returnHomeBtn:hover {
+   background: linear-gradient(#495057, #6c757d);
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .confetti {
@@ -328,28 +294,5 @@ background: linear-gradient(#e447d1, #433343);
     100% { 
         transform: translateY(100vh) rotate(720deg); 
         opacity: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .winner-container {
-        padding: 30px 20px;
-    }
-    
-    .winner-title {
-        font-size: 2.2rem;
-    }
-    
-    .winner-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .winner-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .winner-btn {
-        width: 100%;
     }
 }
