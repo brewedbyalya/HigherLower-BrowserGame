@@ -5,7 +5,7 @@ const cardValues = ["Ace","2","3","4","5","6","7","8","9","10","Jester","Queen",
 let currentCard;
 let nextCard;
 let coins = 0;
-let gameActive = false;
+let gameActive;
 
 /*----- Cached Element References  -----*/
 const frontCard = document.querySelector('.card1 img');
@@ -33,7 +33,6 @@ function initGame() {
     if (backCard) {
         backCard.src = './assets/flippedCard.png';
         backCard.alt = 'Flipped Card';
-        backCard.style.display = 'none';
     }
     
     if (higherBtn) higherBtn.disabled = false;
