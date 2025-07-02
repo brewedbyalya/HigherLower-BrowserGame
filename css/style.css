@@ -59,8 +59,9 @@ h1 {
 .startBtn:hover, #startPlaying:hover {
     background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
     transform: translateY(-2px);
+    color: rgb(145, 55, 55);
     box-shadow: inset 0px 1px 0px 0px #e184f3, 
-                0px 8px 20px rgba(162, 13, 189, 0.4);
+    0px 8px 20px rgba(162, 13, 189, 0.4);
 }
 
 #resetBtn {
@@ -77,9 +78,11 @@ h1 {
 }
 
 #resetBtn:hover {
-    background: linear-gradient(#495057, #6c757d);
+    background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
     transform: translateY(-2px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    color: rgb(145, 55, 55);
+    box-shadow: inset 0px 1px 0px 0px #e184f3, 
+    0px 8px 20px rgba(162, 13, 189, 0.4);
 }
 
 .navbar {
@@ -142,9 +145,11 @@ background: linear-gradient(#e447d1, #433343);
 }
 
 #higher:hover, #lower:hover {
-    background: linear-gradient(#495057, #6c757d);
+    background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
     transform: translateY(-2px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    color: rgb(145, 55, 55);
+    box-shadow: inset 0px 1px 0px 0px #e184f3, 
+    0px 8px 20px rgba(162, 13, 189, 0.4);
 }
 
 .card-container {
@@ -253,9 +258,11 @@ background: linear-gradient(#e447d1, #433343);
 }
 
 .playAgainBtn:hover {
-    background: linear-gradient(#495057, #6c757d);
+    background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
     transform: translateY(-2px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    color: rgb(145, 55, 55);
+    box-shadow: inset 0px 1px 0px 0px #e184f3, 
+    0px 8px 20px rgba(162, 13, 189, 0.4);
 }
 
 .returnHomeBtn {
@@ -272,9 +279,11 @@ background: linear-gradient(#e447d1, #433343);
 }
 
 .returnHomeBtn:hover {
-   background: linear-gradient(#495057, #6c757d);
+   background: linear-gradient(#a20dbd, rgba(56, 2, 68, 1));
     transform: translateY(-2px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    color: rgb(145, 55, 55);
+    box-shadow: inset 0px 1px 0px 0px #e184f3, 
+    0px 8px 20px rgba(162, 13, 189, 0.4);
 }
 
 .confetti {
