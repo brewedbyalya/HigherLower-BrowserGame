@@ -32,6 +32,9 @@ If they guess right, they get a coin. If they guess wrong, it's game over. Get 1
 - [Confetti tutorial](https://medium.com/@aleksej.gudkov/how-to-create-a-confetti-css-animation-a-step-by-step-guide-4ef79bf5ce2e)
 - [Async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 - [Color scheme](https://www.pixilart.com/palettes/retro-8bit-67507)
+- [Win + Fail sound effects](https://bit-by-bit-sound.itch.io/8-bit-music-booster-pack)
+- [Music](https://tallbeard.itch.io/three-red-hearts-prepare-to-dev)
+
 
 ## 🚧 Next Steps
 - Add difficulty levels.

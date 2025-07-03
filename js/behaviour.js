@@ -111,6 +111,7 @@ function updateStatus(message, isSuccess = true) {
 async function compareCards(guess) {
     if (!gameActive) return;
     
+    // Disable buttons during animation
     if (higherBtn) higherBtn.disabled = true;
     if (lowerBtn) lowerBtn.disabled = true;
     
@@ -125,10 +126,7 @@ async function compareCards(guess) {
         updateStatus(`Same card! ${nextCard} equals ${currentCard}. Try again!`, true);
         setTimeout(async () => {
             if (backCard) backCard.style.display = 'none';
-            
-            const nextRandomIndex = Math.floor(Math.random() * cardValues.length);
-            nextCard = cardValues[nextRandomIndex];
-            
+            drawNewCard();
             if (higherBtn) higherBtn.disabled = false;
             if (lowerBtn) lowerBtn.disabled = false;
         }, 1000);
@@ -136,11 +134,8 @@ async function compareCards(guess) {
     }
     
     let correct = false;
-    if (guess === 'higher' && nextIndex > currentIndex) {
-        correct = true;
-    } else if (guess === 'lower' && nextIndex < currentIndex) {
-        correct = true;
-    }
+    if (guess === 'higher' && nextIndex > currentIndex) correct = true;
+    else if (guess === 'lower' && nextIndex < currentIndex) correct = true;
     
     if (correct) {
         coins++;
@@ -148,6 +143,7 @@ async function compareCards(guess) {
         updateStatus(`Correct! ${nextCard} is ${guess} than ${currentCard}`, true);
         
         if (coins >= 10) {
+            playSound('successSound');
             updateStatus("Congratulations! You won with 10 coins!", true);
             gameActive = false;
             createConfetti();
@@ -159,15 +155,14 @@ async function compareCards(guess) {
                 currentCard = nextCard;
                 if (frontCard) frontCard.src = `./assets/${currentCard}.png`;
                 if (backCard) backCard.style.display = 'none';
-                
                 drawNewCard();
                 updateStatus(`Now compare ${currentCard} to the next card`, true);
-                
                 if (higherBtn) higherBtn.disabled = false;
                 if (lowerBtn) lowerBtn.disabled = false;
             }, 1000);
         }
     } else {
+        playSound('failureSound');
         updateStatus(`Game Over! ${nextCard} is ${nextIndex > currentIndex ? 'higher' : 'lower'} than ${currentCard}. You collected ${coins} coins.`, false);
         gameActive = false;
     }
@@ -196,7 +191,7 @@ if (resetBtn) {
 
 initGame();
 
-/* ------------------------------------------------------------------------------------ */
+/* ----------------------------------------Extras-------------------------------------------- */
 
 /*----------- Confetti Animation ----------*/
 function createConfetti() {
@@ -228,3 +223,47 @@ function createConfetti() {
         container.remove();
     }, 5000);
 }
+
+/*---------------- Sound Effects ----------------*/
+let musicEnabled = true;
+let musicStarted = false;
+
+function initMusic() {
+  const bgMusic = document.getElementById('bgMusic');
+  if (bgMusic && musicEnabled) {
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(() => {});
+  }
+}
+
+function stopMusic() {
+  const bgMusic = document.getElementById('bgMusic');
+  if (bgMusic) {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+  }
+}
+
+function playSound(soundId) {
+  stopMusic();
+  const sound = document.getElementById(soundId);
+  if (sound) {
+    sound.currentTime = 0;
+    sound.volume = 1.0;
+    sound.play().then(() => {
+      if (window.location.pathname.includes('start.html') && 
+      window.location.pathname.includes('mainpage.html') && musicEnabled) {
+        setTimeout(() => initMusic(), 1000);
+      }
+    }).catch(() => {});
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.addEventListener('click', () => {
+    if (!musicStarted) {
+      initMusic();
+      musicStarted = true;
+    }
+  }, { once: true });
+});
