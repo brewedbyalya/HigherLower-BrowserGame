@@ -200,7 +200,7 @@ h1 {
 }
 
 .confetti {
-     width: 8px;
+    width: 8px;
     height: 8px;
     position: fixed;
     opacity: 0;
@@ -260,4 +260,27 @@ footer {
         flex-direction: column;
         gap: 10px;
     }
+}
+
+.text-pop {
+    animation: pop 0.3s ease;
+}
+
+.music-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background: #7553B4;
+  color: #F8D668;
+  border: 2px solid #F8D668;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }

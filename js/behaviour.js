@@ -26,155 +26,126 @@ const statusMessage = document.getElementById('game-status-container');
 
 /*-------------- Functions -------------*/
 function initGame() {
-    if (!document.getElementById('game-status')) {
-        statusMessage.id = 'game-status';
-        statusMessage.className = 'mt-3 text-center fw-bold';
-        document.querySelector('.container main')?.appendChild(statusMessage);
-    }
-    
-    coins = 0;
-    gameActive = true;
-    updateCoinDisplay();
-    updateStatus("Game started! Is the next card higher or lower?");
-    drawNewCard();
-    
-    if (backCard) {
-        backCard.src = './assets/flippedCard.png';
-        backCard.alt = 'Flipped Card';
-    }
-    
-    if (higherBtn) higherBtn.disabled = false;
-    if (lowerBtn) lowerBtn.disabled = false;
+  coins = 0;
+  gameActive = true;
+  updateCoinDisplay();
+  updateStatus("Game started! Is the next card higher or lower?");
+  drawNewCard();
+
+  if (backCard) {
+    backCard.src = './assets/flippedCard.png';
+    backCard.alt = 'Flipped card back';
+    backCard.classList.remove('hidden');
+  }
+
+  if (higherBtn) higherBtn.disabled = false;
+  if (lowerBtn) lowerBtn.disabled = false;
 }
 
 function drawNewCard() {
-    const randomIndex = Math.floor(Math.random() * cardValues.length);
-    currentCard = cardValues[randomIndex];
-    
-    if (frontCard) {
-        frontCard.src = `./assets/${currentCard}.png`;
-        frontCard.alt = `${currentCard} Card`;
-    }
-    
-    const nextRandomIndex = Math.floor(Math.random() * cardValues.length);
-    nextCard = cardValues[nextRandomIndex];
+  const randomIndex = Math.floor(Math.random() * cardValues.length);
+  currentCard = cardValues[randomIndex];
+
+  if (frontCard) {
+    frontCard.src = `./assets/${currentCard}.png`;
+    frontCard.alt = `${currentCard} playing card`;
+  }
+
+  let nextRandomIndex;
+  do {
+    nextRandomIndex = Math.floor(Math.random() * cardValues.length);
+  } while (nextRandomIndex === randomIndex);
+  nextCard = cardValues[nextRandomIndex];
 }
 
 async function showFlippedCard() {
-    if (backCard) {
-        backCard.src = './assets/flippedCard.png';
-        backCard.style.display = 'block';
-        backCard.classList.add('flip-animation');
-        
-        await new Promise(resolve => setTimeout(resolve, 500));
-        backCard.classList.remove('flip-animation');
-    }
+  if (backCard) {
+    backCard.src = './assets/flippedCard.png';
+    backCard.alt = 'Flipped card back';
+    backCard.classList.remove('hidden');
+  }
 }
 
 async function revealCard() {
-    if (backCard) {
-        backCard.src = `./assets/${nextCard}.png`;
-        backCard.alt = `${nextCard} Card`;
-        backCard.classList.add('flip-animation');
-        
-        await new Promise(resolve => setTimeout(resolve, 500));
-        backCard.classList.remove('flip-animation');
-    }
-}
-
-function updateStatus(message, isSuccess = true) {
-    if (statusMessage) {
-        statusMessage.textContent = message;
- if (isSuccess) {
-            statusMessage.style.color = '#F8D668'; 
-            statusMessage.style.backgroundColor = '#7553B4'; 
-            statusMessage.style.border = '2px solid #FFB473'; 
-            statusMessage.style.textShadow = '2px 2px 0 #9A54AD';
-            statusMessage.style.boxShadow = '4px 4px 0 #000';   
-        }
-         else {
-            statusMessage.style.color = '#FFC56C'; 
-            statusMessage.style.backgroundColor = '#B659A5'; 
-            statusMessage.style.border = '2px solid #E8798C';
-            statusMessage.style.textShadow = '2px 2px 0 #9A54AD';
-            statusMessage.style.boxShadow = '4px 4px 0 #000';
-        }
-          if (message.includes("Congratulations") || message.includes("Game Over")) {
-            statusMessage.style.animation = 'pulse 0.5s ease 3';
-            setTimeout(() => {
-                statusMessage.style.animation = '';
-            }, 1500);
-        }
-    }
+  if (backCard) {
+    backCard.src = `./assets/${nextCard}.png`;
+    backCard.alt = `${nextCard} playing card`;
+    backCard.classList.add('flip-animation');
+    await new Promise(resolve => setTimeout(resolve, 500));
+    backCard.classList.remove('flip-animation');
+  }
 }
 
 async function compareCards(guess) {
-    if (!gameActive) return;
-    
-    // Disable buttons during animation
-    if (higherBtn) higherBtn.disabled = true;
-    if (lowerBtn) lowerBtn.disabled = true;
-    
-    const currentIndex = cardValues.indexOf(currentCard);
-    const nextIndex = cardValues.indexOf(nextCard);
-    
-    await showFlippedCard();
-    await new Promise(resolve => setTimeout(resolve, 300));
-    await revealCard();
-    
-    if (currentIndex === nextIndex) {
-        updateStatus(`Same card! ${nextCard} equals ${currentCard}. Try again!`, true);
-        setTimeout(async () => {
-            if (backCard) backCard.style.display = 'none';
-            drawNewCard();
-            if (higherBtn) higherBtn.disabled = false;
-            if (lowerBtn) lowerBtn.disabled = false;
-        }, 1000);
-        return;
-    }
-    
-    let correct = false;
-    if (guess === 'higher' && nextIndex > currentIndex) correct = true;
-    else if (guess === 'lower' && nextIndex < currentIndex) correct = true;
-    
-    if (correct) {
-        coins++;
-        updateCoinDisplay();
-        updateStatus(`Correct! ${nextCard} is ${guess} than ${currentCard}`, true);
-        
-        if (coins >= 10) {
-            playSound('successSound');
-            updateStatus("Congratulations! You won with 10 coins!", true);
-            gameActive = false;
-            createConfetti();
-            setTimeout(() => {
-                window.location.href = "winner.html";
-            }, 1500);
-        } else {
-            setTimeout(async () => {
-                currentCard = nextCard;
-                if (frontCard) frontCard.src = `./assets/${currentCard}.png`;
-                if (backCard) backCard.style.display = 'none';
-                drawNewCard();
-                updateStatus(`Now compare ${currentCard} to the next card`, true);
-                if (higherBtn) higherBtn.disabled = false;
-                if (lowerBtn) lowerBtn.disabled = false;
-            }, 1000);
-        }
+  if (!gameActive) return;
+
+  higherBtn.disabled = true;
+  lowerBtn.disabled = true;
+
+  const currentIndex = cardValues.indexOf(currentCard);
+  const nextIndex = cardValues.indexOf(nextCard);
+
+  await showFlippedCard();
+  await new Promise(resolve => setTimeout(resolve, 300));
+  await revealCard();
+
+  if (currentIndex === nextIndex) {
+    updateStatus(`Same card! ${nextCard} equals ${currentCard}. Try again!`, true);
+    setTimeout(() => {
+      drawNewCard();
+      if (higherBtn) higherBtn.disabled = false;
+      if (lowerBtn) lowerBtn.disabled = false;
+    }, 1000);
+    return;
+  }
+
+  const correct = (guess === 'higher' && nextIndex > currentIndex) ||
+                  (guess === 'lower' && nextIndex < currentIndex);
+
+  if (correct) {
+    coins++;
+    updateCoinDisplay();
+    updateStatus(`Correct! ${nextCard} is ${guess} than ${currentCard}.`, true);
+
+    if (coins >= 10) {
+      playSound('successSound');
+      updateStatus('Congratulations! You won with 10 coins!', true);
+      gameActive = false;
+      createConfetti();
+      setTimeout(() => (window.location.href = 'winner.html'), 1500);
     } else {
-        playSound('failureSound');
-        updateStatus(`Game Over! ${nextCard} is ${nextIndex > currentIndex ? 'higher' : 'lower'} than ${currentCard}. You collected ${coins} coins.`, false);
-        gameActive = false;
+      setTimeout(async () => {
+        currentCard = nextCard;
+        frontCard.src = `./assets/${currentCard}.png`;
+        await showFlippedCard();
+        drawNewCard();
+        updateStatus(`Now compare ${currentCard} to the next card.`, true);
+        higherBtn.disabled = false;
+        lowerBtn.disabled = false;
+      }, 1000);
     }
+  } else {
+    playSound('failureSound');
+    updateStatus(`Game Over! ${nextCard} is ${nextIndex > currentIndex ? 'higher' : 'lower'} than ${currentCard}. You collected ${coins} coins.`, false);
+    gameActive = false;
+  }
 }
 
 function updateCoinDisplay() {
-    if (coinCount) {
-        coinCount.textContent = coins;
-        coinCount.classList.add('text-pop');
-        setTimeout(() => coinCount.classList.remove('text-pop'), 300);
-    }
+  if (coinCount) {
+    coinCount.textContent = coins;
+    coinCount.classList.add('text-pop');
+    setTimeout(() => coinCount.classList.remove('text-pop'), 300);
+  }
 }
+
+function updateStatus(message, isPositive = true) {
+  if (statusMessage) {
+    statusMessage.textContent = message;
+    statusMessage.className = isPositive ? 'status-positive' : 'status-negative';
+  }
+}
+
 
 /*----------- Event Listeners ----------*/
 if (higherBtn) {
@@ -229,41 +200,51 @@ let musicEnabled = true;
 let musicStarted = false;
 
 function initMusic() {
-  const bgMusic = document.getElementById('bgMusic');
-  if (bgMusic && musicEnabled) {
-    bgMusic.volume = 0.3;
-    bgMusic.play().catch(() => {});
+  if (!musicStarted && musicEnabled) {
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+      bgMusic.volume = 0.3;
+      bgMusic.play();
+      musicStarted = true;
+    }
   }
 }
 
-function stopMusic() {
-  const bgMusic = document.getElementById('bgMusic');
-  if (bgMusic) {
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-  }
+function toggleMusic() {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    
+    if (bgMusic) {
+        musicEnabled = !musicEnabled;
+        if (musicEnabled) {
+            bgMusic.play();
+            musicToggle.textContent = 'Music: ON';
+        } else {
+            bgMusic.pause();
+            musicToggle.textContent = 'Music: OFF';
+        }
+    }
 }
 
 function playSound(soundId) {
-  stopMusic();
-  const sound = document.getElementById(soundId);
-  if (sound) {
-    sound.currentTime = 0;
-    sound.volume = 1.0;
-    sound.play().then(() => {
-      if (window.location.pathname.includes('start.html') && 
-      window.location.pathname.includes('mainpage.html') && musicEnabled) {
-        setTimeout(() => initMusic(), 1000);
-      }
-    }).catch(() => {});
-  }
+    if (!musicEnabled) return;
+    
+    const sound = document.getElementById(soundId);
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.addEventListener('click', () => {
-    if (!musicStarted) {
-      initMusic();
-      musicStarted = true;
-    }
-  }, { once: true });
+  const musicToggle = document.getElementById('musicToggle');
+  if (musicToggle) {
+    musicToggle.addEventListener('click', toggleMusic);
+  }
+  
+  document.body.addEventListener('click', initMusic, { once: true });
+  
+  if (window.location.pathname.includes('winner.html')) {
+    playSound('successSound');
+  }
 });

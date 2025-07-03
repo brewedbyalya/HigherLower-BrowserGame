@@ -34,6 +34,7 @@ If they guess right, they get a coin. If they guess wrong, it's game over. Get 1
 - [Color scheme](https://www.pixilart.com/palettes/retro-8bit-67507)
 - [Win + Fail sound effects](https://bit-by-bit-sound.itch.io/8-bit-music-booster-pack)
 - [Music](https://tallbeard.itch.io/three-red-hearts-prepare-to-dev)
+- [Font used](https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap)
 
 
 ## 🚧 Next Steps
