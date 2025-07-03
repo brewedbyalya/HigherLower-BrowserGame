@@ -85,7 +85,26 @@ async function revealCard() {
 function updateStatus(message, isSuccess = true) {
     if (statusMessage) {
         statusMessage.textContent = message;
-        statusMessage.style.color = isSuccess ? '#200615' : '#a7284a';
+ if (isSuccess) {
+            statusMessage.style.color = '#F8D668'; 
+            statusMessage.style.backgroundColor = '#7553B4'; 
+            statusMessage.style.border = '2px solid #FFB473'; 
+            statusMessage.style.textShadow = '2px 2px 0 #9A54AD';
+            statusMessage.style.boxShadow = '4px 4px 0 #000';   
+        }
+         else {
+            statusMessage.style.color = '#FFC56C'; 
+            statusMessage.style.backgroundColor = '#B659A5'; 
+            statusMessage.style.border = '2px solid #E8798C';
+            statusMessage.style.textShadow = '2px 2px 0 #9A54AD';
+            statusMessage.style.boxShadow = '4px 4px 0 #000';
+        }
+          if (message.includes("Congratulations") || message.includes("Game Over")) {
+            statusMessage.style.animation = 'pulse 0.5s ease 3';
+            setTimeout(() => {
+                statusMessage.style.animation = '';
+            }, 1500);
+        }
     }
 }
 
